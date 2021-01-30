@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Pavel Drow](https://up.htmlacademy.ru/javascript/22/user/1307323).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Кузнецов] (https://htmlacademy.ru/profile/knenkne).
 
 ---
 
