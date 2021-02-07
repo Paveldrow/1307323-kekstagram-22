@@ -1,7 +1,7 @@
 'use strict';
 
 const randomNumber = (min, max) => {
-  if (min < 0 || min > max || min > max) {
+  if (min < 0 || min > max || max < 0) {
     throw new Error('Ошибка ввода диапазона чисел')
   }
   return Math.floor(Math.random() * (max - min + 1) + min);
