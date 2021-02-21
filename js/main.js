@@ -82,3 +82,6 @@ const getAllComments = function () {
 
 const getPhotos = new Array(allPhotos).fill(null).map((item, index) => getPhoto(index + 1));
 
+checkTextLength('Text', 15);
+
+getPhotos();
