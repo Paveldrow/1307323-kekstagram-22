@@ -1,4 +1,5 @@
-import {getPhotos} from './get-photos.js';
+import { getPhotos } from './data.js';
+import { createPhoto } from './create-photo.js';
 
 getPhotos();
-
+createPhoto();

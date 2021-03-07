@@ -1,4 +1,4 @@
-import {getRandomNumber, getRandomElement} from './util.js';
+import { getRandomNumber, getRandomElement } from './util.js';
 
 const MAX_PHOTOS = 25;
 
@@ -45,7 +45,7 @@ const names = [
   'Сергей',
 ]
 
-const getPhoto = function (index) {
+const getPhotoElement = function (index) {
   return {
     id: index,
     url: `photos/${index}.jpg`,
@@ -69,6 +69,6 @@ const getAllComments = function () {
   return new Array(sumComments).fill(null).map((item, index) => getComment(index + 1));
 };
 
-const getPhotos = () => new Array(MAX_PHOTOS).fill(null).map((item, index) => getPhoto(index + 1));
+const getPhotos = () => new Array(MAX_PHOTOS).fill(null).map((item, index) => getPhotoElement(index + 1));
 
-export {getPhotos};
+export { getPhotos };
