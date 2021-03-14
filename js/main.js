@@ -1,3 +1,4 @@
-import { createPhoto } from './create-photo.js';
+import { renderPhotoList } from './create-photo.js';
+import './picture-modal.js';
 
-createPhoto();
+renderPhotoList();

@@ -1,14 +1,15 @@
 import { getPhotos } from './data.js';
+import { openBigPictureModal} from './picture-modal.js';
 
 const similarListElement = document.querySelector('.pictures');
 const similarPhotoTemplate = document.querySelector('#picture').content;
-
-const createPhoto = () => {
-  const similarPhoto = getPhotos();
+const similarPhotos = getPhotos();
+const renderPhotoList = () => {
   const similarListFragment = document.createDocumentFragment();
 
-  similarPhoto.forEach((picture) => {
+  similarPhotos.forEach((picture, index) => {
     const photoElement = similarPhotoTemplate.cloneNode(true);
+    photoElement.querySelector('.picture__img').dataset.imgId = index;
     photoElement.querySelector('.picture__img').src = picture.url;
     photoElement.querySelector('.picture__likes').textContent = picture.likes;
     photoElement.querySelector('.picture__comments').textContent = picture.comments.length;
@@ -16,6 +17,7 @@ const createPhoto = () => {
   });
 
   similarListElement.appendChild(similarListFragment);
+  openBigPictureModal();
 };
 
-export { createPhoto };
+export { renderPhotoList };
