@@ -1,4 +1,5 @@
-import { renderPhotoList } from './create-photo.js';
-import './picture-modal.js';
+import {getPhotos} from './data.js';
+import { createPhotoList } from './create-photo-list.js';
 
-renderPhotoList();
+createPhotoList(getPhotos());
+

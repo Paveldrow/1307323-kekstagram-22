@@ -1,7 +1,5 @@
 import { getRandomNumber, getRandomElement } from './util.js';
 
-let thumbnails = null;
-
 const MAX_PHOTOS = 25;
 
 const descriptions = [
@@ -54,7 +52,7 @@ const getPhotoElement = function (index) {
     description: getRandomElement(descriptions),
     likes: getRandomNumber(likes.MIN, likes.MAX),
     comments: getAllComments(),
-  }
+  };
 };
 
 const getComment = function (index) {
@@ -71,13 +69,6 @@ const getAllComments = () => {
   return new Array(sumComments).fill(null).map((item, index) => getComment(index + 1));
 };
 
-const getPhotos = () => {
-  thumbnails = new Array(MAX_PHOTOS).fill(null).map((item, index) => getPhotoElement(index + 1));
-  return thumbnails;
-};
+const getPhotos = () => new Array(MAX_PHOTOS).fill(null).map((item, index) => getPhotoElement(index + 1));
 
-const getPhotosElement = function (id) {
-  return thumbnails[id];
-};
-
-export { getPhotos, getPhotosElement };
+export { getPhotos };
