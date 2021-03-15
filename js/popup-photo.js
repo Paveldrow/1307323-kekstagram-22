@@ -24,7 +24,7 @@ const closePopup = () => {
   popup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscKeydown);
   bodyElement.classList.remove('modal-open');
-  popupClose, removeEventListener('click', closePopup);
+  popupClose.removeEventListener('click', closePopup);
 };
 
 export { openPopup };
