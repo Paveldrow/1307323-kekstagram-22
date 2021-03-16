@@ -1,3 +1,5 @@
-import { createPhoto } from './create-photo.js';
+import {getPhotos} from './data.js';
+import { createPhotoList } from './create-photo-list.js';
 
-createPhoto();
+createPhotoList(getPhotos());
+
