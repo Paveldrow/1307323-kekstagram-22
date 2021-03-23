@@ -1,6 +1,6 @@
 import { isEscEvent } from './popup-photo.js';
 import { setSizeImage, removeSetSizeImage } from './image-scale.js';
-import {slider} from './image-effect.js'
+import {addImageEffects, removeImageEffects} from './image-effect.js'
 
 const bodyElement = document.querySelector('body');
 const uploadFileChange = document.querySelector('#upload-file')
@@ -28,6 +28,7 @@ const closePopup = () => {
   imageEditPopupClose.removeEventListener('click', closePopup);
   document.removeEventListener('keydown', onPopupEscKeydown);
   removeSetSizeImage();
+  removeImageEffects();
 };
 
 
@@ -35,8 +36,11 @@ const uploadFile = () => {
   uploadFileChange.addEventListener('change', () => {
     openPopup();
     setSizeImage();
-    slider ();
+    addImageEffects ();
   });
 };
 
 export { uploadFile };
+
+
+
