@@ -73,6 +73,7 @@ const removeAttributeEffects = () => {
   effectLevel.removeAttribute('min');
   effectLevel.removeAttribute('max');
   effectLevel.removeAttribute('step');
+  uploadPreviewPhoto.removeAttribute('style');
 };
 
 const slider = imageUploadForm.querySelector('.effect-level__slider');
@@ -137,33 +138,11 @@ const getEffect = (evt) => {
 
   uploadPreviewPhoto.className = 'img-upload__preview';
 
-  switch (evt.target.id) {
-
-    case filterEffects.original.name:
-      uploadPreviewPhoto.style.filter = filterEffects.original.filter;
-      effectLevel.value = '';
-      removeAttributeEffects();
-      break;
-
-    case filterEffects.chrome.name:
-      addRenderEffectRule(filterEffects.chrome);
-      break;
-
-    case filterEffects.sepia.name:
-      addRenderEffectRule(filterEffects.sepia);
-      break;
-
-    case filterEffects.marvin.name:
-      addRenderEffectRule(filterEffects.marvin);
-      break;
-
-    case filterEffects.phobos.name:
-      addRenderEffectRule(filterEffects.phobos);
-      break;
-
-    case filterEffects.heat.name:
-      addRenderEffectRule(filterEffects.heat);
-      break;
+  if (evt.target.id !== filterEffects.original.name) {
+    addRenderEffectRule(filterEffects[evt.target.value]);
+  } else {
+    uploadPreviewPhoto.style.filter = '';
+    removeAttributeEffects();
   }
 };
 
