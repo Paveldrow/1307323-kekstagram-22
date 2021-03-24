@@ -15,16 +15,16 @@ const onPopupEscKeydown = (evt) => {
 
 const openPopup = () => {
   popup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscKeydown);
   bodyElement.classList.add('modal-open');
+  document.addEventListener('keydown', onPopupEscKeydown);
   popupClose.addEventListener('click', closePopup);
 };
 
 const closePopup = () => {
   popup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscKeydown);
   bodyElement.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPopupEscKeydown);
   popupClose.removeEventListener('click', closePopup);
 };
 
-export { openPopup };
+export { openPopup, isEscEvent };
