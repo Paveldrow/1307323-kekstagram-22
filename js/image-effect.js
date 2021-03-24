@@ -12,55 +12,67 @@ const filterEffects = {
     filter: '',
   },
   chrome: {
-    name:'effect-chrome',
-    className:'effects__preview--chrome',
+    name: 'effect-chrome',
+    className: 'effects__preview--chrome',
     filter: 'grayscale',
-    unit:'',
+    unit: '',
     min: 0,
     max: 1,
     start: 1,
     step: 0.1,
   },
   sepia: {
-    name:'effect-sepia',
-    className:'effects__preview--sepia',
+    name: 'effect-sepia',
+    className: 'effects__preview--sepia',
     filter: 'sepia',
-    unit:'',
+    unit: '',
     min: 0,
     max: 1,
     start: 1,
     step: 0.1,
   },
   marvin: {
-    name:'effect-marvin',
-    className:'effects__preview--marvin',
+    name: 'effect-marvin',
+    className: 'effects__preview--marvin',
     filter: 'invert',
-    unit:'%',
+    unit: '%',
     min: 0,
     max: 100,
     start: 100,
     step: 1,
   },
   phobos: {
-    name:'effect-phobos',
-    className:'effects__preview--phobos',
+    name: 'effect-phobos',
+    className: 'effects__preview--phobos',
     filter: 'blur',
-    unit:'px',
+    unit: 'px',
     min: 0,
     max: 3,
     start: 3,
     step: 0.1,
   },
   heat: {
-    name:'effect-heat',
-    className:'effects__preview--heat',
+    name: 'effect-heat',
+    className: 'effects__preview--heat',
     filter: 'brightness',
-    unit:'',
+    unit: '',
     min: 1,
     max: 3,
     start: 3,
     step: 0.1,
   },
+};
+
+const setAttributeEffects = (min, max, step) => {
+  effectLevel.setAttribute('min', `${min}`);
+  effectLevel.setAttribute('max', `${max}`);
+  effectLevel.setAttribute('step', `${step}`);
+};
+
+const removeAttributeEffects = () => {
+  effectLevel.removeAttribute('min');
+  effectLevel.removeAttribute('max');
+  effectLevel.removeAttribute('step');
 };
 
 const slider = imageUploadForm.querySelector('.effect-level__slider');
@@ -88,14 +100,14 @@ const addImageEffects = () => {
   });
   sliderArea.classList.add('hidden');
   effectList.addEventListener('change', getEffect);
-}
+};
 
 const getSliderValue = (filter, unit) => {
   slider.noUiSlider.on('update', (values, handle) => {
     effectLevel.value = values[handle];
     uploadPreviewPhoto.style.filter = `${filter}(${effectLevel.value}${unit})`;
   });
-}
+};
 
 const removeImageEffects = () => {
   slider.noUiSlider.destroy();
@@ -104,14 +116,24 @@ const removeImageEffects = () => {
   uploadPreviewPhoto.className = 'img-upload__preview';
   imageUploadForm.querySelector('#effect-none').checked = true;
   effectLevel.value = '';
-}
+};
 
-const getEffect = (evt)=> {
-  if (evt.target.id === filterEffects.original.name) {
-    sliderArea.classList.add('hidden');
-  } else {
-    sliderArea.classList.remove('hidden');
-  }
+const addRenderEffectRule = (obj) => {
+  uploadPreviewPhoto.classList.add(obj.className);
+  setAttributeEffects(obj.min, obj.max, obj.step);
+  slider.noUiSlider.updateOptions({
+    range: {
+      min: obj.min,
+      max: obj.max,
+    },
+    start: obj.start,
+    step: obj.step,
+  });
+  getSliderValue(obj.filter, obj.unit);
+};
+
+const getEffect = (evt) => {
+  sliderArea.classList.toggle('hidden', evt.target.id === filterEffects.original.name);
 
   uploadPreviewPhoto.className = 'img-upload__preview';
 
@@ -120,73 +142,29 @@ const getEffect = (evt)=> {
     case filterEffects.original.name:
       uploadPreviewPhoto.style.filter = filterEffects.original.filter;
       effectLevel.value = '';
+      removeAttributeEffects();
       break;
 
     case filterEffects.chrome.name:
-      uploadPreviewPhoto.classList.add(filterEffects.chrome.className);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.chrome.min,
-          max: filterEffects.chrome.max,
-        },
-        start: filterEffects.chrome.start,
-        step: filterEffects.chrome.step,
-      });
-      getSliderValue(filterEffects.chrome.filter, filterEffects.chrome.unit);
+      addRenderEffectRule(filterEffects.chrome);
       break;
 
     case filterEffects.sepia.name:
-      uploadPreviewPhoto.classList.add(filterEffects.sepia.className);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.sepia.min,
-          max: filterEffects.sepia.max,
-        },
-        start: filterEffects.sepia.start,
-        step: filterEffects.sepia.step,
-      });
-      getSliderValue(filterEffects.sepia.filter, filterEffects.sepia.unit);
+      addRenderEffectRule(filterEffects.sepia);
       break;
 
     case filterEffects.marvin.name:
-      uploadPreviewPhoto.classList.add(filterEffects.marvin.className);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.marvin.min,
-          max: filterEffects.marvin.max,
-        },
-        start: filterEffects.marvin.start,
-        step: filterEffects.marvin.step,
-      });
-      getSliderValue(filterEffects.marvin.filter, filterEffects.marvin.unit);
+      addRenderEffectRule(filterEffects.marvin);
       break;
 
     case filterEffects.phobos.name:
-      uploadPreviewPhoto.classList.add(filterEffects.phobos.className);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.phobos.min,
-          max: filterEffects.phobos.max,
-        },
-        start: filterEffects.phobos.start,
-        step: filterEffects.phobos.step,
-      });
-      getSliderValue(filterEffects.phobos.filter, filterEffects.phobos.unit);
+      addRenderEffectRule(filterEffects.phobos);
       break;
 
     case filterEffects.heat.name:
-      uploadPreviewPhoto.classList.add(filterEffects.heat.className);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.heat.min,
-          max: filterEffects.heat.max,
-        },
-        start: filterEffects.heat.start,
-        step: filterEffects.heat.step,
-      });
-      getSliderValue(filterEffects.heat.filter, filterEffects.heat.unit);
+      addRenderEffectRule(filterEffects.heat);
       break;
   }
-}
+};
 
 export { addImageEffects, removeImageEffects };
