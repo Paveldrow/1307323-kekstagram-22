@@ -2,6 +2,7 @@ import { isEscEvent } from './popup-photo.js';
 import { setSizeImage, removeSetSizeImage } from './image-scale.js';
 import { addImageEffects, removeImageEffects } from './image-effect.js';
 import {stopEvent} from './util.js';
+import {setImageRedactorFormSubmit} from './api.js';
 
 const bodyElement = document.querySelector('body');
 const uploadFileChange = document.querySelector('#upload-file')
@@ -9,6 +10,8 @@ const imageEditPopup = document.querySelector('.img-upload__overlay');
 const imageEditPopupClose = imageEditPopup.querySelector('#upload-cancel');
 const hashtagInput = document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
+const imageUploadForm = document.querySelector('.img-upload__form');
+const uploadImage = imageUploadForm.querySelector('.img-upload__input');
 
 const addPropagation = () => {
   hashtagInput.addEventListener('keydown', stopEvent);
@@ -101,6 +104,9 @@ const uploadFile = () => {
     addValidForm();
   });
 };
+
+uploadImage.addEventListener('change',openPopup);
+setImageRedactorFormSubmit(closePopup);
 
 export { uploadFile };
 
