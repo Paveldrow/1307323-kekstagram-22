@@ -9,4 +9,8 @@ const checkTextLength = (text, maxLength) => (text.length <= maxLength);
 
 const getRandomElement = (elements) => (elements[getRandomNumber(0, elements.length - 1)]);
 
-export { getRandomNumber, checkTextLength, getRandomElement };
+const stopEvent = (evt) => {
+  evt.stopPropagation();
+};
+
+export { getRandomNumber, checkTextLength, getRandomElement, stopEvent };
