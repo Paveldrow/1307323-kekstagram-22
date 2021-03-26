@@ -1,13 +1,13 @@
-import {createPhotoList} from './create-photo-list.js';
 import {messageUploadForm, messageErrorDownloadData} from './form-modal.js';
+import {renderPicturesContent} from './create-photo-list.js'
 
 const serverUrlDownloadData = 'https://22.javascript.pages.academy/kekstagram/data';
 const serverUrlUploadData = 'https://22.javascript.pages.academy/kekstagram';
 
 fetch(serverUrlDownloadData)
   .then((response) => response.json())
-  .then((objects)=>createPhotoList(objects))
-  .catch(()=>messageErrorDownloadData());
+  .then(renderPicturesContent)
+  .catch(messageErrorDownloadData);
 
 const setImageRedactorFormSubmit = (onSuccess) => {
   const imageUploadForm = document.querySelector('.img-upload__form');
