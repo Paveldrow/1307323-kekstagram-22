@@ -18,8 +18,8 @@ const getRandomUniqNumber = (min, max) => {
     }
     ids.push(currentValue);
     return currentValue;
-  }
-}
+  };
+};
 
 const checkTextLength = (text, maxLength) => (text.length <= maxLength);
 
