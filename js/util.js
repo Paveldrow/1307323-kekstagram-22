@@ -18,8 +18,8 @@ const getRandomUniqNumber = (min, max) => {
     }
     ids.push(currentValue);
     return currentValue;
-  }
-}
+  };
+};
 
 const checkTextLength = (text, maxLength) => (text.length <= maxLength);
 
@@ -29,4 +29,8 @@ const stopEvent = (evt) => {
   evt.stopPropagation();
 };
 
-export { getRandomNumber, getRandomUniqNumber, checkTextLength, getRandomElement, stopEvent };
+const isEscEvent = (evt) => {
+  return evt.key === ('Escape' || 'Esc')
+};
+
+export { getRandomNumber, getRandomUniqNumber, checkTextLength, getRandomElement, stopEvent, isEscEvent };

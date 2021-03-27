@@ -1,9 +1,7 @@
-import { getPhotos } from './data.js';
-import { createPhotoList } from './create-photo-list.js';
-import { uploadFile } from './upload-file.js'
+import {setImageRedactorFormSubmit} from './api.js';
+import { renderPicturesContent } from './gallery.js';
+import { uploadFile } from './upload-file.js';
 
-createPhotoList(getPhotos());
+setImageRedactorFormSubmit((objects) => renderPicturesContent(objects));
 uploadFile();
-
-
 
