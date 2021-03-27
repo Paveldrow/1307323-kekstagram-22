@@ -1,6 +1,7 @@
-import { renderPictures } from './gallery.js';
+import {setImageRedactorFormSubmit} from './api.js';
+import { renderPicturesContent } from './gallery.js';
 import { uploadFile } from './upload-file.js';
 
-renderPictures();
+setImageRedactorFormSubmit((objects) => renderPicturesContent(objects));
 uploadFile();
 

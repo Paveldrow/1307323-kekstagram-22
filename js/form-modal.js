@@ -1,4 +1,4 @@
-import { isEscEvent } from './popup-photo.js';
+import { isEscEvent } from './util.js';
 
 const mainTag = document.querySelector('main');
 
