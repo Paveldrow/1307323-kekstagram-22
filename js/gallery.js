@@ -1,6 +1,6 @@
 /* global _:readonly */
 
-import { onPictureClick } from './full-photo.js';
+import { renderModalPicture } from './modal-photo.js';
 import { FILTERS } from './filter.js';
 
 const similarListElement = document.querySelector('.pictures');
@@ -44,7 +44,7 @@ const createPhotoList = (pictures) => {
     photoElement.querySelector('.picture__likes').textContent = picture.likes;
     photoElement.querySelector('.picture__comments').textContent = picture.comments.length;
 
-    photoElement.addEventListener('click', () => onPictureClick(picture));
+    photoElement.addEventListener('click', () => renderModalPicture(picture));
 
     similarListFragment.appendChild(photoElement);
   });

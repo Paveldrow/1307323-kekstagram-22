@@ -1,4 +1,4 @@
-import { isEscEvent } from './popup-photo.js';
+import { isEscEvent } from './util.js';
 import { setSizeImage, removeSetSizeImage } from './image-scale.js';
 import { addImageEffects, removeImageEffects } from './image-effect.js';
 import {stopEvent} from './util.js';

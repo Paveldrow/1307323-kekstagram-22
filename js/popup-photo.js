@@ -1,10 +1,8 @@
+import { isEscEvent } from './util.js';
+
 const bodyElement = document.querySelector('body');
 const popup = document.querySelector('.big-picture');
 const popupClose = popup.querySelector('.big-picture__cancel');
-
-const isEscEvent = (evt) => {
-  return evt.key === ('Escape' || 'Esc')
-};
 
 const onPopupEscKeydown = (evt) => {
   if (isEscEvent(evt)) {

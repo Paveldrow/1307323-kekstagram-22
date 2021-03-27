@@ -17,11 +17,12 @@ const fullPhoto = (picture) => {
   createCommentList(picture.comments);
 }
 
-const onPictureClick = (picture) => {
+const renderModalPicture = (picture) => {
   openPopup();
   fullPhoto(picture);
   allCommentsCounter.classList.add('hidden');
   commentsLoader.classList.add('hidden');
 }
 
-export { onPictureClick };
+export {renderModalPicture}
+

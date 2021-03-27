@@ -1,5 +1,5 @@
 import {messageUploadForm, messageErrorDownloadData} from './form-modal.js';
-import {renderPicturesContent} from './create-photo-list.js'
+import {renderPicturesContent} from './gallery.js'
 
 const serverUrlDownloadData = 'https://22.javascript.pages.academy/kekstagram/data';
 const serverUrlUploadData = 'https://22.javascript.pages.academy/kekstagram';
