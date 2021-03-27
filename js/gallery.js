@@ -1,27 +1,25 @@
 /* global _:readonly */
+import {renderModalPicture} from './modal-photo.js';
+import {FILTERS} from './filter.js';
 
-import { renderModalPicture } from './modal-photo.js';
-import { FILTERS } from './filter.js';
-
-const similarListElement = document.querySelector('.pictures');
-const similarPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const photosList = document.querySelector('.pictures');
 const imgFilter = document.querySelector('.img-filters');
 const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
 const RENDER_DELAY = 500;
 
 const cleanGallery = () => {
-  const pictureItem = similarListElement.querySelectorAll('.picture');
+  const pictureItem = photosList.querySelectorAll('.picture');
   pictureItem.forEach((element) => {
     element.remove();
   });
 }
 
 const renderPicturesContent = (pictures) => {
-  createPhotoList(pictures);
+  renderPictures(pictures);
   imgFilter.classList.remove('img-filters--inactive');
   const debounced = _.debounce((id) => {
     cleanGallery();
-    createPhotoList(FILTERS[id](pictures))
+    renderPictures(FILTERS[id](pictures))
   }, RENDER_DELAY);
 
   imgFilter.addEventListener('click', (evt) => {
@@ -35,21 +33,20 @@ const renderPicturesContent = (pictures) => {
   });
 }
 
-const createPhotoList = (pictures) => {
-  const similarListFragment = document.createDocumentFragment();
-
-  pictures.forEach((picture) => {
-    const photoElement = similarPhotoTemplate.cloneNode(true);
-    photoElement.querySelector('.picture__img').src = picture.url;
-    photoElement.querySelector('.picture__likes').textContent = picture.likes;
-    photoElement.querySelector('.picture__comments').textContent = picture.comments.length;
-
-    photoElement.addEventListener('click', () => renderModalPicture(picture));
-
-    similarListFragment.appendChild(photoElement);
+const renderPictures = (objects) => {
+  const templatePicture = document.querySelector('#picture').content;
+  const fragmentsPicture = document.createDocumentFragment();
+  objects.forEach((element) => {
+    const picture = templatePicture.querySelector('.picture').cloneNode(true);
+    picture.querySelector('.picture__img').src = element.url;
+    picture.querySelector('.picture__comments').textContent = String(element.comments.length);
+    picture.querySelector('.picture__likes').textContent = String(element.likes);
+    picture.addEventListener('click', () => {
+      renderModalPicture(element);
+    });
+    fragmentsPicture.appendChild(picture);
   });
+  photosList.appendChild(fragmentsPicture);
+}
 
-  similarListElement.appendChild(similarListFragment);
-};
-
-export { createPhotoList, renderPicturesContent };
+export {renderPictures, renderPicturesContent};
