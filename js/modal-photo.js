@@ -1,4 +1,4 @@
-import {isEscEvent} from './util.js';
+import { isEscEvent } from './util.js';
 
 const modalPhoto = document.querySelector('.big-picture');
 const modalPhotoImg = modalPhoto.querySelector('.big-picture__img').querySelector('img');
@@ -6,7 +6,7 @@ const modalPhotoLikes = modalPhoto.querySelector('.likes-count');
 const modalPhotoDescription = modalPhoto.querySelector('.social__caption');
 const modalPhotoCommentsList = modalPhoto.querySelector('.social__comments');
 const modalButtonCancel = modalPhoto.querySelector('.big-picture__cancel');
-const commentsLoaderButton =  modalPhoto.querySelector('.social__comments-loader');
+const commentsLoaderButton = modalPhoto.querySelector('.social__comments-loader');
 const commentCount = modalPhoto.querySelector('.social__comment-count');
 const COMMENTS_MIN_COUNT = 5;
 let numberDisplayedComments = COMMENTS_MIN_COUNT;
@@ -27,7 +27,7 @@ const cleanCommentaries = () => {
 
 const closeModal = () => {
   modalPhoto.classList.add('hidden');
-  document.removeEventListener('keydown',onPopUpEscKeydown);
+  document.removeEventListener('keydown', onPopUpEscKeydown);
   document.querySelector('body').classList.remove('modal-open');
   modalButtonCancel.removeEventListener('click', closeModal);
   closeCommentariesButton();
@@ -38,7 +38,7 @@ const closeModal = () => {
 
 const openModal = () => {
   modalPhoto.classList.remove('hidden');
-  document.addEventListener('keydown',onPopUpEscKeydown);
+  document.addEventListener('keydown', onPopUpEscKeydown);
   commentCount.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
   modalButtonCancel.addEventListener('click', closeModal);
@@ -85,10 +85,10 @@ const renderCommentaries = () => {
     item.innerHTML = `<img class="social__picture" src="${element.avatar}" alt="${element.name}" width="35" height="35">
       <p class="social__text">${element.message}</p>`;
     modalPhotoCommentsList.appendChild(item);
-    if (modalPhotoCommentsList.querySelectorAll('.social__comment').length === commentaries.length ) {
+    if (modalPhotoCommentsList.querySelectorAll('.social__comment').length === commentaries.length) {
       closeCommentariesButton();
     }
   });
 }
 
-export {renderModalPicture};
+export { renderModalPicture };

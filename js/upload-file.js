@@ -3,7 +3,7 @@ import { setSizeImage, removeSetSizeImage } from './image-scale.js';
 import { addImageEffects, removeImageEffects } from './image-effect.js';
 import { stopEvent } from './util.js';
 import { setImageRedactorFormSubmit } from './api.js';
-import {fileChooser} from './user-photo.js';
+import { fileChooser } from './user-photo.js';
 
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_HASHTAGS_NUMBER = 5;
@@ -95,13 +95,13 @@ const closePopup = () => {
   removeImageEffects();
   removePropagation();
   removeValidForm();
-  uploadPreviewPhoto.style ='';
+  uploadPreviewPhoto.style = '';
   uploadImage.value = '';
   uploadPreviewPhoto.querySelector('img').src = 'img/upload-default-image.jpg';
   imageUploadForm.reset();
 };
 
-const uploadFile = () => {
+const getData = () => {
 
   uploadFileChange.addEventListener('change', () => {
     openPopup();
@@ -112,10 +112,12 @@ const uploadFile = () => {
   });
 };
 
-uploadImage.addEventListener('change', openPopup);
-setImageRedactorFormSubmit(closePopup);
 
-export { uploadFile };
+const uploadFile = () => {
+  setImageRedactorFormSubmit(closePopup);
+}
+
+export { getData, uploadFile };
 
 
 

@@ -20,4 +20,4 @@ const fileChooser = () => {
   }
 }
 
-export {fileChooser}
+export { fileChooser }
