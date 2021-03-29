@@ -1,10 +1,10 @@
 import { messageUploadForm, messageErrorDownloadData } from './form-modal.js';
 import { renderPicturesContent } from './gallery.js';
 
-const serverUrlDownloadData = 'https://22.javascript.pages.academy/kekstagram/data';
-const serverUrlUploadData = 'https://22.javascript.pages.academy/kekstagram';
+const SERVER_URL_DOWNLOAD_DATA = 'https://22.javascript.pages.academy/kekstagram/data';
+const SERVER_URL_UPLOAD_DATA = 'https://22.javascript.pages.academy/kekstagram';
 
-fetch(serverUrlDownloadData)
+fetch(SERVER_URL_DOWNLOAD_DATA)
   .then((response) => response.json())
   .then(renderPicturesContent)
   .catch(messageErrorDownloadData);
@@ -15,7 +15,7 @@ const setImageRedactorFormSubmit = (onSuccess) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
 
-    fetch(serverUrlUploadData, {
+    fetch(SERVER_URL_UPLOAD_DATA, {
       method: 'POST',
       body: formData,
     }).then((response) => {
