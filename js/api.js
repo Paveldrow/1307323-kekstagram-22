@@ -1,4 +1,4 @@
-import { uploadFormMessage, downloadMessageErrorData } from './form-modal.js';
+import { setupUploadFormMessage, setupDownloadFormMessage } from './form-modal.js';
 import { renderPicturesContent } from './gallery.js';
 
 const SERVER_URL_DOWNLOAD_DATA = 'https://22.javascript.pages.academy/kekstagram/data';
@@ -7,7 +7,7 @@ const SERVER_URL_UPLOAD_DATA = 'https://22.javascript.pages.academy/kekstagram';
 fetch(SERVER_URL_DOWNLOAD_DATA)
   .then((response) => response.json())
   .then(renderPicturesContent)
-  .catch(downloadMessageErrorData);
+  .catch(setupDownloadFormMessage);
 
 const setImageRedactorFormSubmit = (onSuccess) => {
   const imageUploadForm = document.querySelector('.img-upload__form');
@@ -21,11 +21,11 @@ const setImageRedactorFormSubmit = (onSuccess) => {
     }).then((response) => {
       if (response.ok) {
         onSuccess();
-        uploadFormMessage('success');
+        setupUploadFormMessage('success');
       } else {
-        uploadFormMessage('error');
+        setupUploadFormMessage('error');
       }
-    }).catch(() => uploadFormMessage('error'));
+    }).catch(() => setupUploadFormMessage('error'));
   });
 };
 
