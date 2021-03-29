@@ -2,7 +2,7 @@ import { getRandomUniqNumber } from './util.js';
 
 const RANDOM_FILTER_COUNT_PHOTO = 10;
 
-const FILTERS = {
+const Filter = {
   'filter-default': (pictures) => {
     return pictures;
   },
@@ -21,4 +21,4 @@ const FILTERS = {
   },
 };
 
-export { FILTERS };
+export { Filter };

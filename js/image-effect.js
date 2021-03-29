@@ -6,7 +6,7 @@ const effectList = imageUploadForm.querySelector('.effects__list');
 const effectLevel = imageUploadForm.querySelector('.effect-level__value');
 const uploadPreviewPhoto = imageUploadForm.querySelector('.img-upload__preview');
 
-const filterEffects = {
+const FilterEffects = {
   original: {
     name: 'effect-none',
     filter: '',
@@ -113,7 +113,7 @@ const getSliderValue = (filter, unit) => {
 const removeImageEffects = () => {
   slider.noUiSlider.destroy();
   effectList.removeEventListener('change', getEffect);
-  uploadPreviewPhoto.style.filter = filterEffects.original.filter;
+  uploadPreviewPhoto.style.filter = FilterEffects.original.filter;
   uploadPreviewPhoto.className = 'img-upload__preview';
   imageUploadForm.querySelector('#effect-none').checked = true;
   effectLevel.value = '';
@@ -134,12 +134,12 @@ const addRenderEffectRule = (obj) => {
 };
 
 const getEffect = (evt) => {
-  sliderArea.classList.toggle('hidden', evt.target.id === filterEffects.original.name);
+  sliderArea.classList.toggle('hidden', evt.target.id === FilterEffects.original.name);
 
   uploadPreviewPhoto.className = 'img-upload__preview';
 
-  if (evt.target.id !== filterEffects.original.name) {
-    addRenderEffectRule(filterEffects[evt.target.value]);
+  if (evt.target.id !== FilterEffects.original.name) {
+    addRenderEffectRule(FilterEffects[evt.target.value]);
   } else {
     uploadPreviewPhoto.style.filter = '';
     removeAttributeEffects();

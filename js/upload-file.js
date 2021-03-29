@@ -1,8 +1,12 @@
 import { isEscEvent } from './util.js';
 import { setSizeImage, removeSetSizeImage } from './image-scale.js';
 import { addImageEffects, removeImageEffects } from './image-effect.js';
-import {stopEvent} from './util.js';
-import {setImageRedactorFormSubmit} from './api.js';
+import { stopEvent } from './util.js';
+import { setImageRedactorFormSubmit } from './api.js';
+
+const MAX_HASHTAG_LENGTH = 20;
+const MAX_HASHTAGS_NUMBER = 5;
+const ALLOWED_SYMBOLS = /^[#(?=a-z0-9)a-z0-9]+$/;
 
 const bodyElement = document.querySelector('body');
 const uploadFileChange = document.querySelector('#upload-file')
@@ -23,12 +27,9 @@ const removePropagation = () => {
   commentInput.removeEventListener('keydown', stopEvent);
 };
 
-const MAX_HASHTAG_LENGTH = 20;
-const MAX_HASHTAGS_NUMBER = 5;
-const ALLOWED_SYMBOLS = /^[#(?=a-z0-9)a-z0-9]+$/;
 
 const validHashtags = () => {
-  const hashtags = hashtagInput.value
+  const hashtags = hashtagInput.value.trim()
     .split(' ')
     .map((hashtag) => {
       return hashtag.toLowerCase();
@@ -105,7 +106,7 @@ const uploadFile = () => {
   });
 };
 
-uploadImage.addEventListener('change',openPopup);
+uploadImage.addEventListener('change', openPopup);
 setImageRedactorFormSubmit(closePopup);
 
 export { uploadFile };

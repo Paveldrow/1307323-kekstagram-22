@@ -1,13 +1,13 @@
-const scaleValue = document.querySelector('.scale__control--value');
-const image = document.querySelector('.img-upload__preview img')
-const scaleSmallerButton = document.querySelector('.scale__control--smaller');
-const scaleBiggerButton = document.querySelector('.scale__control--bigger');
-
 const SCALE_DEFAULT = 100;
 const SCALE_MIN = 25;
 const SCALE_MAX = 100;
 const SCALE_STEP = 25;
 const DIVIDER = 100;
+
+const scaleValue = document.querySelector('.scale__control--value');
+const image = document.querySelector('.img-upload__preview img')
+const scaleSmallerButton = document.querySelector('.scale__control--smaller');
+const scaleBiggerButton = document.querySelector('.scale__control--bigger');
 
 let imageSize = SCALE_DEFAULT;
 

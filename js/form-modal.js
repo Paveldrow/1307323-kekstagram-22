@@ -1,4 +1,4 @@
-import { isEscEvent } from './util.js';
+import {isEscEvent} from './util.js';
 
 const mainTag = document.querySelector('main');
 
@@ -14,7 +14,7 @@ const messageUploadForm = (designation)=> {
       mainTag.removeChild(message);
       document.removeEventListener('keydown', isEscOnMessage);
     }
-  };
+  }
 
   button.addEventListener('click', ()=>{
     mainTag.removeChild(message);
@@ -23,7 +23,7 @@ const messageUploadForm = (designation)=> {
 
   message.addEventListener('click',isEscOnMessage);
   document.addEventListener('keydown', isEscOnMessage);
-};
+}
 
 const messageErrorDownloadData = ()=> {
   const template = document.querySelector('#error').content;
@@ -47,6 +47,6 @@ const messageErrorDownloadData = ()=> {
 
   message.addEventListener('click',isEscOnMessage);
   document.addEventListener('keydown', isEscOnMessage);
-};
+}
 
 export {messageUploadForm, messageErrorDownloadData};
