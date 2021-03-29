@@ -17,7 +17,7 @@ const cleanGallery = () => {
 const renderPicturesContent = (pictures) => {
   renderPictures(pictures);
   imgFilter.classList.remove('img-filters--inactive');
-  const filtrate = _.debounce((id) => {
+  const filter = _.debounce((id) => {
     cleanGallery();
     renderPictures(Filter[id](pictures))
   }, RENDER_DELAY);
@@ -29,7 +29,7 @@ const renderPicturesContent = (pictures) => {
     }
     imgFilter.querySelector('.img-filters__button--active').classList.remove(FILTER_ACTIVE_CLASS);
     targetClassList.add(FILTER_ACTIVE_CLASS);
-    filtrate(evt.target.id);
+    filter(evt.target.id);
   });
 }
 
