@@ -9,7 +9,7 @@ const MAX_HASHTAG_LENGTH = 20;
 const MAX_HASHTAGS_NUMBER = 5;
 const ALLOWED_SYMBOLS = /^[#(?=a-z0-9)a-z0-9]+$/;
 
-const bodyElement = document.querySelector('body');
+const page = document.querySelector('body');
 const uploadFileChange = document.querySelector('#upload-file')
 const imageEditPopup = document.querySelector('.img-upload__overlay');
 const imageEditPopupClose = imageEditPopup.querySelector('#upload-cancel');
@@ -81,14 +81,14 @@ const onPopupEscKeydown = (evt) => {
 const openPopup = () => {
   imageEditPopup.classList.remove('hidden');
   fileChooser();
-  bodyElement.classList.add('modal-open');
+  page.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscKeydown);
   imageEditPopupClose.addEventListener('click', closePopup);
 };
 
 const closePopup = () => {
   imageEditPopup.classList.add('hidden');
-  bodyElement.classList.remove('modal-open');
+  page.classList.remove('modal-open');
   imageEditPopupClose.removeEventListener('click', closePopup);
   document.removeEventListener('keydown', onPopupEscKeydown);
   removeSetSizeImage();
