@@ -3,6 +3,7 @@ import { setSizeImage, removeSetSizeImage } from './image-scale.js';
 import { addImageEffects, removeImageEffects } from './image-effect.js';
 import { stopEvent } from './util.js';
 import { setImageRedactorFormSubmit } from './api.js';
+import {fileChooser} from './user-photo.js';
 
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_HASHTAGS_NUMBER = 5;
@@ -16,6 +17,7 @@ const hashtagInput = document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadImage = imageUploadForm.querySelector('.img-upload__input');
+const uploadPreviewPhoto = imageUploadForm.querySelector('.img-upload__preview');
 
 const addPropagation = () => {
   hashtagInput.addEventListener('keydown', stopEvent);
@@ -78,8 +80,9 @@ const onPopupEscKeydown = (evt) => {
 
 const openPopup = () => {
   imageEditPopup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscKeydown);
+  fileChooser();
   bodyElement.classList.add('modal-open');
+  document.addEventListener('keydown', onPopupEscKeydown);
   imageEditPopupClose.addEventListener('click', closePopup);
 };
 
@@ -92,8 +95,11 @@ const closePopup = () => {
   removeImageEffects();
   removePropagation();
   removeValidForm();
+  uploadPreviewPhoto.style ='';
+  uploadImage.value = '';
+  uploadPreviewPhoto.querySelector('img').src = 'img/upload-default-image.jpg';
+  imageUploadForm.reset();
 };
-
 
 const uploadFile = () => {
 
