@@ -1,7 +1,7 @@
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const uploadImage = document.querySelector('.img-upload__input');
 const imgPreviewPhoto = document.querySelector('img');
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const fileChooser = () => {
   const file = uploadImage.files[0];

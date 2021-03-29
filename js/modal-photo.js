@@ -1,5 +1,6 @@
 import { isEscEvent } from './util.js';
 
+const COMMENTS_MIN_COUNT = 5;
 const modalPhoto = document.querySelector('.big-picture');
 const modalPhotoImg = modalPhoto.querySelector('.big-picture__img').querySelector('img');
 const modalPhotoLikes = modalPhoto.querySelector('.likes-count');
@@ -8,7 +9,6 @@ const modalPhotoCommentsList = modalPhoto.querySelector('.social__comments');
 const modalButtonCancel = modalPhoto.querySelector('.big-picture__cancel');
 const commentsLoaderButton = modalPhoto.querySelector('.social__comments-loader');
 const commentCount = modalPhoto.querySelector('.social__comment-count');
-const COMMENTS_MIN_COUNT = 5;
 let numberDisplayedComments = COMMENTS_MIN_COUNT;
 let commentaries = [];
 
@@ -18,7 +18,7 @@ const onPopUpEscKeydown = (evt) => {
   }
 }
 
-const cleanCommentaries = () => {
+const removeCommentaries = () => {
   const comment = modalPhotoCommentsList.querySelectorAll('.social__comment');
   comment.forEach((element) => {
     element.remove();
@@ -31,7 +31,7 @@ const closeModal = () => {
   document.querySelector('body').classList.remove('modal-open');
   modalButtonCancel.removeEventListener('click', closeModal);
   closeCommentariesButton();
-  cleanCommentaries();
+  removeCommentaries();
   commentsLoaderButton.removeEventListener('click', switchShowMoreButton);
   numberDisplayedComments = COMMENTS_MIN_COUNT;
 }
@@ -45,7 +45,7 @@ const openModal = () => {
 }
 
 const switchShowMoreButton = () => {
-  cleanCommentaries();
+  removeCommentaries();
   numberDisplayedComments += 5;
   renderCommentaries();
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;

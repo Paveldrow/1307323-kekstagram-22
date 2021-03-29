@@ -2,7 +2,7 @@ import { isEscEvent } from './util.js';
 
 const mainTag = document.querySelector('main');
 
-const messageUploadForm = (designation) => {
+const uploadFormMessage = (designation) => {
   const template = document.querySelector(`#${designation}`).content;
   const message = template.querySelector(`.${designation}`).cloneNode(true);
   message.style.zIndex = '100';
@@ -25,7 +25,7 @@ const messageUploadForm = (designation) => {
   document.addEventListener('keydown', isEscOnMessage);
 };
 
-const messageErrorDownloadData = () => {
+const downloadMessageErrorData = () => {
   const template = document.querySelector('#error').content;
   const message = template.querySelector('.error').cloneNode(true);
   message.style.zIndex = '100';
@@ -49,4 +49,4 @@ const messageErrorDownloadData = () => {
   document.addEventListener('keydown', isEscOnMessage);
 }
 
-export { messageUploadForm, messageErrorDownloadData };
+export { uploadFormMessage, downloadMessageErrorData };

@@ -3,11 +3,11 @@ import { renderModalPicture } from './modal-photo.js';
 import { Filter } from './filter.js';
 
 const RENDER_DELAY = 500;
+const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
 const photosList = document.querySelector('.pictures');
 const imgFilter = document.querySelector('.img-filters');
-const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
 
-const cleanGallery = () => {
+const removeGallery = () => {
   const pictureItem = photosList.querySelectorAll('.picture');
   pictureItem.forEach((element) => {
     element.remove();
@@ -18,7 +18,7 @@ const renderPicturesContent = (pictures) => {
   renderPictures(pictures);
   imgFilter.classList.remove('img-filters--inactive');
   const filter = _.debounce((id) => {
-    cleanGallery();
+    removeGallery();
     renderPictures(Filter[id](pictures))
   }, RENDER_DELAY);
 
